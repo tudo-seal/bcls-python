@@ -9,6 +9,8 @@ from cls import (
     Omega,
     Arrow,
     Intersection,
+    BooleanTerm,
+    Var,
     FiniteCombinatoryLogic,
     enumerate_terms,
     interpret_term,
@@ -114,7 +116,7 @@ def test() -> None:
     start = timeit.default_timer()
 
     # target: BooleanTerm[Type] = Var(pos(SIZE - 1, SIZE - 1)) & ~(Var(seen(1, 1)))
-    target = pos(SIZE - 1, SIZE - 1)
+    target: BooleanTerm[Type] = Var(pos(SIZE - 1, SIZE - 1))
     # target: BooleanTerm[Type] = Var(seen(1, 1))
 
     results = gamma.inhabit(target)
