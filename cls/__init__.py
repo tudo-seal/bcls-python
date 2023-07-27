@@ -1,11 +1,12 @@
 from collections import deque
-from collections.abc import Iterable, Mapping, MutableMapping
+from collections.abc import Hashable, Iterable, Mapping
 from typing import Any, Optional, TypeVar
 
 from .subtypes import Subtypes
 from .types import Type, Omega, Constructor, Product, Arrow, Intersection
 from .enumeration import enumerate_terms, interpret_term, enumerate_terms_of_size
-from .fcl import FiniteCombinatoryLogic
+from .boolean import BooleanTerm, And, Var, Or, Not
+from .fcl import Clause, FiniteCombinatoryLogic
 
 __all__ = [
     "Subtypes",
@@ -18,16 +19,22 @@ __all__ = [
     "enumerate_terms",
     "enumerate_terms_of_size",
     "interpret_term",
+    "BooleanTerm",
+    "And",
+    "Var",
+    "Or",
+    "Not",
     "FiniteCombinatoryLogic",
     "inhabit_and_interpret",
 ]
 
+T = TypeVar("T", bound=Hashable, covariant=True)
 C = TypeVar("C")
 
 
 def inhabit_and_interpret(
     repository: Mapping[C, Type],
-    query: list[Type] | Type,
+    query: list[BooleanTerm[Type] | Type | Clause] | BooleanTerm[Type] | Type | Clause,
     max_count: Optional[int] = 100,
     subtypes: Optional[Subtypes] = None,
 ) -> Iterable[Any]:
@@ -38,9 +45,9 @@ def inhabit_and_interpret(
     if not isinstance(query, list):
         query = [query]
 
-    grammar: MutableMapping[
-        Type,
-        deque[tuple[C, list[Type]]],
+    grammar: dict[
+        BooleanTerm[Type] | Type | Clause,
+        deque[tuple[C, list[Type | BooleanTerm[Type] | Clause]]],
     ] = fcl.inhabit(*query)
 
     for q in query:
