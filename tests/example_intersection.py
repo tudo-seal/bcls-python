@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from cls import (
+from bcls import (
     Type,
     Constructor,
     Arrow,

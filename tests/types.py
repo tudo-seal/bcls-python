@@ -1,6 +1,6 @@
 import unittest
 
-from cls import Product, Constructor, Intersection, Arrow, Omega, Type
+from bcls import Product, Constructor, Intersection, Arrow, Omega, Type
 
 a = Constructor("a")
 b = Constructor("b")

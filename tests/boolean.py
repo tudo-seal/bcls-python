@@ -4,7 +4,7 @@ from typing import Any
 
 import lark
 
-from cls.boolean import (
+from bcls.boolean import (
     And,
     BooleanTerm,
     Not,

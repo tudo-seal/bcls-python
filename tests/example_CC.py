@@ -1,4 +1,4 @@
-from cls import (
+from bcls import (
     Type,
     Constructor,
     Arrow,

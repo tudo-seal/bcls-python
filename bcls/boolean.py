@@ -3,7 +3,7 @@ BooleanTerms
 ============
 
 This module provides functions and objects to create and evaluate boolean terms, as well as a
-function to generate a minimal DNF/CNF for a given boolean Term using the Quine Mccluskey 
+function to generate a minimal DNF/CNF for a given boolean Term using the Quine Mccluskey
 algorithm.
 
 The algorithm itself uses the following steps:
